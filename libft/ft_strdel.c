@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 10:20:20 by ybosque           #+#    #+#             */
-/*   Updated: 2018/06/30 15:49:50 by ybosque          ###   ########.fr       */
+/*   Created: 2018/06/14 23:47:50 by ybosque           #+#    #+#             */
+/*   Updated: 2018/06/30 15:57:07 by ybosque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_strdel(char **as)
 {
-	write(fd, &c, 1);
+	if (!as)
+		return ;
+	free(*as);
+	*as = NULL;
 }

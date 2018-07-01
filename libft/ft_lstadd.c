@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 10:20:20 by ybosque           #+#    #+#             */
-/*   Updated: 2018/06/30 15:49:50 by ybosque          ###   ########.fr       */
+/*   Created: 2018/06/30 19:26:31 by ybosque           #+#    #+#             */
+/*   Updated: 2018/06/30 21:28:13 by ybosque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	write(fd, &c, 1);
+	new->next = *alst;
+	*alst = new;
 }

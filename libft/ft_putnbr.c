@@ -1,59 +1,27 @@
-//#include "libft.h"
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/15 01:18:10 by ybosque           #+#    #+#             */
+/*   Updated: 2018/06/30 11:00:56 by ybosque          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		ft_putchar(str[i]);
-}
-
-int		ft_absolute(int n)
-{
-	if (n == -2147483648)
-		return (0);
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
+#include "libft.h"
 
 void	ft_putnbr(int n)
 {
-	int		c;
-	int		i;
-	char	flag;
+	char	*dst;
 
-	if (n == -2147483648)
-		flag = 2;
-	if (n < 0 && flag != 2)
-		ft_putchar('-');
-	flag = 0;
-	i = 1000000000;
-	c = ft_absolute(n);
-	while (i >= 1 && flag != 2)
+	if (n != -2147483648)
 	{
-		if (flag == 1 || (flag == 0 && c / i != 0) || (c == 0 && i == 1))
-		{
-			if (c >= 1000000000)
-				ft_putchar(c / i + '0');
-			else
-				ft_putchar((c % (10 * i)) / i + '0');
-			flag = 1;
-		}
-		i /= 10;
+		dst = ft_itoa(n);
+		ft_putstr(dst);
+		free(dst);
 	}
-	if (flag == 2)
+	else
 		ft_putstr("-2147483648");
-}
-
-int		main(int ac, char **av)
-{
-	ft_putnbr(atoi(av[1]));
 }

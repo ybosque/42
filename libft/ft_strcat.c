@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybosque <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 10:20:20 by ybosque           #+#    #+#             */
-/*   Updated: 2018/06/30 15:49:50 by ybosque          ###   ########.fr       */
+/*   Created: 2018/04/10 09:46:18 by ybosque           #+#    #+#             */
+/*   Updated: 2018/04/10 09:54:52 by ybosque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	write(fd, &c, 1);
+	unsigned int	i;
+	unsigned int	n;
+
+	i = 0;
+	n = ft_strlen(s1);
+	while (s2[i])
+	{
+		s1[n] = s2[i];
+		i++;
+		n++;
+	}
+	s1[n] = '\0';
+	return (s1);
 }

@@ -1,21 +1,23 @@
-//#include "libft.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/15 01:32:53 by ybosque           #+#    #+#             */
+/*   Updated: 2018/06/30 20:15:12 by ybosque          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		ft_absolute(int n)
-{
-	if (n == -2147483648)
-		return (0);
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
+#include "libft.h"
 
-int		intlen(int n)
+static int		intlen(int n)
 {
 	int	len;
 
-	len = 0;
-	while (n > 0)
+	len = 1;
+	while (n >= 10)
 	{
 		len++;
 		n /= 10;
@@ -23,79 +25,31 @@ int		intlen(int n)
 	return (len);
 }
 
-/*char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		i;
-	int		c;
-	int		j;
-	int		flag;
+	int		p;
 	char	*str;
 
+	if (n == 0)
+		return (ft_strdup("0"));
 	if (n == -2147483648)
-		return ("-2147483648");
-	c = ft_absolute(n);
-	if (!(str = malloc(sizeof(int) * intlen(c) + 2)))
+		return (ft_strdup("-2147483648"));
+	i = (n < 0) ? 1 : 0;
+	p = intlen(ft_absolute(n)) - 1;
+	if (!(str = malloc(sizeof(char) * (p + i + 2))))
 		return (0);
-	j = 0;
-	if (n < 0)
-		str[j++] = '-';
-	flag = 0;
-	i = 1000000000;
-	while (i >= 1)
+	if (i == 1)
+		str[0] = '-';
+	while (p >= 0)
 	{
-		if (flag == 1 || (flag == 0 && c / i != 0) || (c == 0 && i == 1))
-		{
-			if (c >= 1000000000 && i == 1000000000)
-				str[j++] = c / i + '0';
-			else
-				str[j++] = (c % (10 * i) / i + '0');
-			flag = 1;
-		}
-		i /= 10;
+		if (p == 9)
+			str[i++] = ft_absolute(n) / ft_recursive_power(10, p) + '0';
+		else
+			str[i++] = (ft_absolute(n) % (ft_recursive_power(10, p + 1)) /
+					ft_recursive_power(10, p) + '0');
+		p--;
 	}
+	str[i] = '\0';
 	return (str);
-}*/
-
-char	*itoa(int c, char *str, int j)
-{
-	int		flag;
-	int		i;
-
-	flag = 0;
-	i = 1000000000;
-	while (i >= 1)
-	{
-		if (flag == 1 || (flag == 0 && c / i != 0) || (c == 0 && i == 1))
-		{
-			if (c >= 1000000000 && i == 1000000000)
-				str[j++] = c / i + '0';
-			else
-				str[j++] = (c % (10 * i) / i + '0');
-			flag = 1;
-		}
-		i /= 10;
-	}
-	return (str);
-}
-
-char	*ft_itoa(int n)
-{
-	int		c;
-	int		j;
-	char	*str;
-
-	if (n == -2147483648)
-		return ("-2147483648");
-	c = ft_absolute(n);
-	if (!(str = malloc(sizeof(int) * intlen(c) + 2)))
-		return (0);
-	j = 0;
-	if (n < 0)
-		str[j++] = '-';
-	return (itoa(c, str, j));
-}
-
-int		main(int ac, char **av)
-{
-	printf("%s\n", ft_itoa(atoi(av[1])));
 }

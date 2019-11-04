@@ -6,7 +6,11 @@
 /*   By: ybosque <ybosque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 10:20:20 by ybosque           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/11/04 15:04:12 by ybosque          ###   ########.fr       */
+=======
+/*   Updated: 2018/06/30 15:49:50 by ybosque          ###   ########.fr       */
+>>>>>>> 3a39f40b3d5dbfb1ab866a725d1f22b05e3dd32d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +19,8 @@
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3a39f40b3d5dbfb1ab866a725d1f22b05e3dd32d
